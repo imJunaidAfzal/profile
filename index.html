@@ -11,7 +11,7 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
+    :root, [data-theme="dark"] {
       --bg: #0a0a0f;
       --bg-card: #12121a;
       --bg-card-hover: #1a1a26;
@@ -34,6 +34,34 @@
       --radius: 12px;
       --radius-sm: 8px;
       --radius-lg: 16px;
+      --nav-bg: rgba(10, 10, 15, 0.75);
+      --nav-mobile-bg: rgba(10,10,15,0.97);
+      --shadow-scroll: rgba(0,0,0,0.4);
+    }
+
+    [data-theme="light"] {
+      --bg: #f5f5f7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f0f0f5;
+      --border: #e0e0e8;
+      --border-hover: #c8c8d4;
+      --text: #1a1a2e;
+      --text-muted: #555570;
+      --text-dim: #888898;
+      --accent: #5b52e6;
+      --accent-soft: rgba(91, 82, 230, 0.1);
+      --accent-glow: rgba(91, 82, 230, 0.18);
+      --green: #16a34a;
+      --green-soft: rgba(22, 163, 74, 0.1);
+      --cyan: #0891b2;
+      --cyan-soft: rgba(8, 145, 178, 0.1);
+      --orange: #d97706;
+      --orange-soft: rgba(217, 119, 6, 0.1);
+      --pink: #db2777;
+      --pink-soft: rgba(219, 39, 119, 0.1);
+      --nav-bg: rgba(245, 245, 247, 0.8);
+      --nav-mobile-bg: rgba(245, 245, 247, 0.97);
+      --shadow-scroll: rgba(0,0,0,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -80,12 +108,12 @@
     /* ── Navigation ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10, 10, 15, 0.75);
+      background: var(--nav-bg);
       backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
-      transition: box-shadow 0.3s;
+      transition: box-shadow 0.3s, background 0.3s;
     }
-    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+    nav.scrolled { box-shadow: 0 4px 30px var(--shadow-scroll); }
     .nav-inner {
       max-width: 1100px; margin: 0 auto;
       padding: 0 24px;
@@ -448,6 +476,46 @@
     }
     footer p { font-size: 0.8rem; color: var(--text-dim); }
 
+    /* ── Light mode ambient ── */
+    [data-theme="light"] .ambient::before {
+      background: radial-gradient(circle, rgba(91,82,230,0.08) 0%, transparent 70%);
+    }
+    [data-theme="light"] .ambient::after {
+      background: radial-gradient(circle, rgba(8,145,178,0.06) 0%, transparent 70%);
+    }
+
+    /* ── Theme Toggle ── */
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.25s;
+      color: var(--text-muted); font-size: 1.1rem;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-toggle svg { width: 18px; height: 18px; transition: transform 0.3s; }
+    .theme-toggle:hover svg { transform: rotate(30deg); }
+
+    /* ── Export PDF Button ── */
+    .pdf-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.8rem; font-weight: 500;
+      cursor: pointer; transition: all 0.25s;
+      font-family: 'Inter', sans-serif; text-decoration: none;
+    }
+    .pdf-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .pdf-btn svg { width: 15px; height: 15px; }
+
+    /* ── Transitions for theme switch ── */
+    body, nav, .project-card, .timeline-item, .skill-category, .cert-card,
+    .contact-card, .service-item, .edu-card, .achievement-card, .hero-badge,
+    .skill-tags span, .project-card .project-tech span {
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+
     /* ── Scroll Animations ── */
     .reveal {
       opacity: 0; transform: translateY(24px);
@@ -455,16 +523,31 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── Print ── */
+    /* ── Print / PDF ── */
     @media print {
-      nav, .ambient, .projects-toggle { display: none !important; }
-      body { background: #fff; color: #111; }
-      .hero { min-height: auto; padding-top: 0; }
-      section { padding: 24px 0; }
-      .project-card, .timeline-item, .skill-category, .cert-card, .contact-card, .service-item, .edu-card {
-        background: #f9f9f9; border-color: #ddd; color: #222;
+      nav, .ambient, .projects-toggle, .theme-toggle, .pdf-btn, .nav-actions { display: none !important; }
+      body { background: #fff !important; color: #111 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hero { min-height: auto !important; padding-top: 20px !important; }
+      .hero h1 { font-size: 2rem !important; }
+      .hero h1 .gradient { -webkit-text-fill-color: #5b52e6 !important; }
+      section { padding: 20px 0 !important; page-break-inside: avoid; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hidden-project { display: block !important; }
+      .project-card, .timeline-item, .skill-category, .cert-card, .contact-card,
+      .service-item, .edu-card, .achievement-card {
+        background: #f7f7fa !important; border-color: #ddd !important; color: #222 !important;
+        break-inside: avoid; box-shadow: none !important; transform: none !important;
       }
-      .timeline-desc li, .about-text, .project-card p { color: #444; }
+      .timeline-desc li, .about-text, .project-card p, .achievement-content p { color: #444 !important; }
+      .timeline::before { background: #ddd !important; }
+      .timeline-item::before { background: #5b52e6 !important; border-color: #fff !important; }
+      .section-label, .timeline-company, .edu-school, .cert-info a { color: #5b52e6 !important; }
+      .hero-badge { border-color: #16a34a !important; }
+      .hero-links .primary { background: #5b52e6 !important; box-shadow: none !important; }
+      a { color: inherit !important; }
+      .skill-tags span, .project-card .project-tech span, .highlight-tags span {
+        border-color: #ddd !important; background: #eef !important;
+      }
     }
 
     /* ── Responsive ── */
@@ -472,7 +555,7 @@
       .nav-links { 
         display: none; flex-direction: column;
         position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(10,10,15,0.97); backdrop-filter: blur(20px);
+        background: var(--nav-mobile-bg); backdrop-filter: blur(20px);
         padding: 16px; border-bottom: 1px solid var(--border);
         gap: 4px;
       }
@@ -504,9 +587,19 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">junaid<span>.</span>dev</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-actions">
+      <button class="pdf-btn" id="pdfBtn" onclick="exportPDF()" title="Export as PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle light/dark mode">
+        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -1185,7 +1278,44 @@
       if (item.getAttribute('href') === '#' + current) item.classList.add('active');
     });
   });
+
+  initTheme();
 })();
+
+function initTheme() {
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'dark');
+  applyTheme(theme);
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const sunIcon = document.getElementById('sunIcon');
+  const moonIcon = document.getElementById('moonIcon');
+  if (theme === 'light') {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+}
+
+function exportPDF() {
+  const hidden = document.querySelectorAll('.hidden-project');
+  hidden.forEach(card => { card.style.display = ''; });
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+
+  setTimeout(() => { window.print(); }, 200);
+}
 
 let projectsExpanded = false;
 function toggleProjects() {
