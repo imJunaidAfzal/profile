@@ -383,6 +383,27 @@
     }
     .edu-card p { font-size: 0.9rem; color: var(--text-muted); margin-top: 12px; }
 
+    /* ── Achievements ── */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .achievement-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 24px; border-radius: var(--radius);
+      background: var(--bg-card); border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .achievement-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .achievement-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 700; flex-shrink: 0;
+    }
+    .achievement-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .achievement-content p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+
     /* ── Services ── */
     .services-grid {
       display: grid;
@@ -462,6 +483,7 @@
       .hero-stats .stat-value { font-size: 1.2rem; }
       .projects-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
+      .achievements-grid { grid-template-columns: 1fr; }
       .certs-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr 1fr; }
@@ -488,9 +510,10 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#certifications">Certs</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -502,7 +525,7 @@
     <div class="hero-content">
       <div class="hero-badge"><span class="dot"></span> Available for projects</div>
       <h1>Hi, I'm <span class="gradient">Junaid Afzal</span></h1>
-      <p class="tagline">Senior Machine Learning Engineer specializing in Generative AI, LLMs, MLOps, and building scalable AI solutions that drive real business impact.</p>
+      <p class="tagline">Senior Machine Learning Engineer with 7+ years building production-grade AI systems — from end-to-end LLM applications and agentic workflows to secure, scalable deployments on cloud platforms.</p>
       <div class="hero-links">
         <a href="#contact" class="primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -518,7 +541,7 @@
         </a>
       </div>
       <div class="hero-stats">
-        <div><div class="stat-value">6+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-value">7+</div><div class="stat-label">Years Experience</div></div>
         <div><div class="stat-value">20+</div><div class="stat-label">AI Projects</div></div>
         <div><div class="stat-value">14</div><div class="stat-label">Certifications</div></div>
         <div><div class="stat-value">8K+</div><div class="stat-label">Followers</div></div>
@@ -534,21 +557,24 @@
       <div class="section-label">About Me</div>
       <h2 class="section-title">Passion meets precision.</h2>
       <p class="about-text">
-        I'm a <strong>Senior Machine Learning Engineer</strong> deeply passionate about AI and its latest advancements. 
-        From <strong>Generative AI</strong> and image creation with DALL-E, Stable Diffusion, and Midjourney, to mastering 
-        <strong>LLMs, fine-tuning, and prompt engineering</strong> — I enjoy every bit of the journey.
+        I'm a <strong>Senior Machine Learning Engineer</strong> with 7+ years of hands-on experience building 
+        <strong>production-grade intelligent systems</strong>. I specialize in end-to-end LLM applications — including 
+        <strong>RAG pipelines, agentic workflows, prompt engineering, and optimization</strong> — deploying them at scale 
+        using modern frameworks and cloud platforms.
         <br><br>
-        I've brought AI-driven innovations to life in industries like <strong>sales, marketing, fashion, entertainment, 
-        education, and security</strong>. I'm dedicated to crafting impactful solutions, deeply committed to open source, 
-        and enthusiastically building AI tools that bridge technology with a human touch for a brighter future.
+        From <strong>Generative AI</strong> (DALL-E, Stable Diffusion, Midjourney) to <strong>multi-agent orchestration 
+        with LangChain/LangGraph</strong>, I build systems that move from prototype to production. I've brought AI-driven 
+        innovations to life across <strong>sales, marketing, fashion, entertainment, education, finance, and security</strong>, 
+        and I'm deeply committed to <strong>AI safety, LLM security, and responsible AI practices</strong>.
       </p>
       <div class="highlight-tags">
         <span class="type-genai">Generative AI</span>
-        <span class="type-llm">LLMs & Agents</span>
+        <span class="type-llm">LLMs & Agentic AI</span>
         <span class="type-cv">Computer Vision</span>
-        <span class="type-saas">MLOps</span>
-        <span class="type-data">Data Engineering</span>
-        <span style="background:rgba(168,85,247,0.12);color:#a855f7;">Responsible AI</span>
+        <span class="type-saas">MLOps / LLMOps</span>
+        <span class="type-data">RAG Pipelines</span>
+        <span style="background:rgba(168,85,247,0.12);color:#a855f7;">AI Safety & Security</span>
+        <span style="background:rgba(239,68,68,0.12);color:#ef4444;">Guardrails</span>
       </div>
     </div>
   </div>
@@ -573,8 +599,9 @@
         </div>
         <ul class="timeline-desc">
           <li>Created POCs that helped raise <strong>$40,000 in Angel Investment</strong> and <strong>$800,000 in Pre-Seed Round</strong></li>
-          <li>Serverlessly deployed sophisticated pipelines with fine-tuned open-source and closed-source LLMs</li>
-          <li>Managed and worked with a distributed team across 4 countries</li>
+          <li>Serverlessly deployed production-grade LLM pipelines with fine-tuned open-source and closed-source models</li>
+          <li>Designed end-to-end RAG architectures and agentic workflows for AI-powered code automation</li>
+          <li>Managed a distributed team across 4 countries, communicating directly with clients and stakeholders</li>
         </ul>
       </div>
 
@@ -587,9 +614,9 @@
           <div class="timeline-meta">Jul 2022 — Jan 2024<br>1 yr 7 mos</div>
         </div>
         <ul class="timeline-desc">
-          <li>Built AI models from scratch and communicated results to product managers and stakeholders</li>
-          <li>Built data ingestion and transformation infrastructure at scale</li>
-          <li>Developed APIs and handled deployment of AI infrastructure</li>
+          <li>Built AI models from scratch and translated results into actionable insights for product managers and stakeholders</li>
+          <li>Architected scalable data ingestion and transformation infrastructure</li>
+          <li>Developed production APIs with guardrails and handled end-to-end AI deployment</li>
         </ul>
       </div>
 
@@ -603,7 +630,7 @@
         </div>
         <ul class="timeline-desc">
           <li>Established ML workflows for training, testing, and deploying object detection models to production</li>
-          <li>Developed APIs for model serving and managed codebase quality</li>
+          <li>Developed model-serving APIs and maintained codebase quality standards</li>
         </ul>
       </div>
 
@@ -613,12 +640,74 @@
             <div class="timeline-role">Machine Learning Engineer</div>
             <div class="timeline-company">Freelance — Remote (Fiverr & Direct)</div>
           </div>
-          <div class="timeline-meta">Feb 2018 — May 2022<br>4 yrs 4 mos</div>
+          <div class="timeline-meta">Feb 2018 — Present<br>7+ yrs</div>
         </div>
         <ul class="timeline-desc">
-          <li>Delivered AI services globally across diverse industries</li>
-          <li>Built AI products leveraging GenAI, LLMs, Stable Diffusion, Computer Vision, and NLP</li>
+          <li>Delivered production-grade AI solutions globally across sales, marketing, finance, education, and security</li>
+          <li>Built end-to-end LLM applications including RAG pipelines, chatbots, agentic systems, and generative AI products</li>
+          <li>Direct client communication and full project lifecycle management — from prototype to scalable deployment</li>
         </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Achievements ── -->
+<section id="achievements">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Achievements</div>
+      <h2 class="section-title">Key highlights.</h2>
+    </div>
+    <div class="achievements-grid">
+
+      <div class="achievement-card reveal">
+        <div class="achievement-icon" style="background:var(--green-soft);color:var(--green);">$</div>
+        <div class="achievement-content">
+          <h4>Raised $840K via AI POCs</h4>
+          <p>Created proof-of-concept AI systems at Kodezi that directly contributed to raising $40K in Angel Investment and $800K in Pre-Seed funding.</p>
+        </div>
+      </div>
+
+      <div class="achievement-card reveal">
+        <div class="achievement-icon" style="background:rgba(239,68,68,0.12);color:#ef4444;">&#x1f6e1;</div>
+        <div class="achievement-content">
+          <h4>LLM Security & Supply Chain Hardening</h4>
+          <p>Implemented OWASP LLM Top 10 defenses in production systems — prompt injection prevention, model provenance verification, and AI supply chain security to prevent trojanized model attacks.</p>
+        </div>
+      </div>
+
+      <div class="achievement-card reveal">
+        <div class="achievement-icon" style="background:var(--accent-soft);color:var(--accent);">&#x2699;</div>
+        <div class="achievement-content">
+          <h4>Production-Grade Agentic Systems</h4>
+          <p>Designed and deployed multi-agent AI workflows with LangChain/LangGraph — including tool orchestration, memory management, guardrails, and MCP integration for enterprise clients.</p>
+        </div>
+      </div>
+
+      <div class="achievement-card reveal">
+        <div class="achievement-icon" style="background:var(--cyan-soft);color:var(--cyan);">&#x26A1;</div>
+        <div class="achievement-content">
+          <h4>Scalable RAG Pipelines</h4>
+          <p>Architected secure RAG systems with vector databases (Pinecone, FAISS), embedding optimization, and retrieval guardrails — reducing hallucinations and ensuring data integrity in production.</p>
+        </div>
+      </div>
+
+      <div class="achievement-card reveal">
+        <div class="achievement-icon" style="background:var(--pink-soft);color:var(--pink);">&#x1f310;</div>
+        <div class="achievement-content">
+          <h4>Global Distributed Team Leadership</h4>
+          <p>Managed cross-functional teams across 4 countries, delivering AI products with direct client communication and end-to-end project lifecycle management.</p>
+        </div>
+      </div>
+
+      <div class="achievement-card reveal">
+        <div class="achievement-icon" style="background:var(--orange-soft);color:var(--orange);">&#x1f4ca;</div>
+        <div class="achievement-content">
+          <h4>20+ AI Products Shipped</h4>
+          <p>Delivered 20+ production AI products across LLMs, generative AI, computer vision, and NLP — spanning industries from fintech and healthcare to marketing and education.</p>
+        </div>
       </div>
 
     </div>
@@ -638,17 +727,27 @@
         <h3><span class="cat-icon" style="background:var(--pink-soft);color:var(--pink);">AI</span> AI & Machine Learning</h3>
         <div class="skill-tags">
           <span>Generative AI</span><span>Machine Learning</span><span>Deep Learning</span>
-          <span>LLMs</span><span>AI Agents</span><span>LangChain</span><span>Fine-tuning</span>
-          <span>Prompt Engineering</span><span>Transformers</span><span>RAG</span>
+          <span>LLMs</span><span>AI Agents</span><span>LangChain</span><span>LangGraph</span>
+          <span>Fine-tuning</span><span>Prompt Engineering</span><span>Transformers</span>
+          <span>RAG Pipelines</span><span>Agentic AI</span><span>MCP</span>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3><span class="cat-icon" style="background:var(--accent-soft);color:var(--accent);">Gen</span> Generative AI</h3>
         <div class="skill-tags">
-          <span>GPT-4 / ChatGPT</span><span>Stable Diffusion</span><span>DALL-E</span>
-          <span>ControlNet</span><span>LoRA / DreamBooth</span><span>Diffusers</span>
-          <span>AI Art & Avatars</span><span>Midjourney</span>
+          <span>GPT-4o / ChatGPT</span><span>Claude</span><span>Llama</span>
+          <span>Stable Diffusion</span><span>DALL-E</span><span>ControlNet</span>
+          <span>LoRA / DreamBooth</span><span>Diffusers</span><span>Midjourney</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><span class="cat-icon" style="background:rgba(239,68,68,0.12);color:#ef4444;">Sec</span> AI Security & Safety</h3>
+        <div class="skill-tags">
+          <span>LLM Security</span><span>Prompt Injection Defense</span><span>AI Guardrails</span>
+          <span>OWASP LLM Top 10</span><span>Supply Chain Security</span>
+          <span>Model Provenance</span><span>Responsible AI</span><span>Data Poisoning Prevention</span>
         </div>
       </div>
 
@@ -680,11 +779,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <h3><span class="cat-icon" style="background:rgba(168,85,247,0.12);color:#a855f7;">ML</span> Frameworks</h3>
+        <h3><span class="cat-icon" style="background:rgba(168,85,247,0.12);color:#a855f7;">ML</span> Frameworks & Tools</h3>
         <div class="skill-tags">
           <span>TensorFlow</span><span>PyTorch</span><span>Hugging Face</span>
           <span>Scikit-Learn</span><span>SparkML</span><span>OpenAI API</span>
-          <span>PySpark</span><span>Pinecone</span>
+          <span>PySpark</span><span>Pinecone</span><span>FAISS</span>
+          <span>Weaviate</span><span>CrewAI</span><span>Rasa</span>
         </div>
       </div>
 
@@ -974,11 +1074,11 @@
     </div>
     <div class="services-grid">
       <div class="service-item reveal"><div class="service-icon">🤖</div><h4>AI/ML Development</h4></div>
-      <div class="service-item reveal"><div class="service-icon">💬</div><h4>LLM & Chatbot Solutions</h4></div>
+      <div class="service-item reveal"><div class="service-icon">💬</div><h4>LLM & Agentic AI</h4></div>
       <div class="service-item reveal"><div class="service-icon">🎨</div><h4>Generative AI Apps</h4></div>
       <div class="service-item reveal"><div class="service-icon">☁️</div><h4>Cloud & MLOps</h4></div>
-      <div class="service-item reveal"><div class="service-icon">🔌</div><h4>API Development</h4></div>
-      <div class="service-item reveal"><div class="service-icon">📊</div><h4>Data Engineering</h4></div>
+      <div class="service-item reveal"><div class="service-icon">🛡️</div><h4>AI Security & Guardrails</h4></div>
+      <div class="service-item reveal"><div class="service-icon">🔌</div><h4>RAG & API Development</h4></div>
       <div class="service-item reveal"><div class="service-icon">👁️</div><h4>Computer Vision</h4></div>
       <div class="service-item reveal"><div class="service-icon">📱</div><h4>AI Mobile Apps</h4></div>
     </div>
